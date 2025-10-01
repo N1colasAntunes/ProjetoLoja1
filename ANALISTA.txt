@@ -1,0 +1,29 @@
+ANALISTA
+o dono de uma loja precisa de um sistema web(web é uma especificação, roda no browser, já resolve metade dos problemas ao apresentar para um cliente)
+para cadastrar seus clientes (nome,email,senha)
+mas para cadastrar é preciso realizar um login com email e senha e ter acesso a tela cadastro
+após cadastrar é possível alterar e excluir (apresentar uma mensagem se realmente deseja apagar).
+
+BANCO DE DADOS
+criar o banco de dados chamado bdloja
+criar as tabelas usuário(email,senha)
+criar tabela cliente(nome,email,senha)
+realizar as consultas nas tabelas
+inserir dados do admin na tabela usuário;
+
+PROTOTIPO/WIREFRAME(protótipo com funcionalidades)
+criar com ferramentas como figma, corel entre outros e apresentar para o gerente até ser aprovado.
+
+DESENVOLVIMENTO
+desenvolver usando a IDE Visual Studio 2022 e MYSQLWorkbench
+
+TESTES
+ao finalizar o desenvolvimento realizar vários testes de validação e logica para que o cliente se sinta seguro ao utilizar.
+
+HOMOLOGAÇÃO
+o cliente testa a aplicação
+
+VERSIONAMENTO
+utilizar o GIT BASH e GITHUB, CRIAR O ARQUIVO .gitignore e pegar os códigos do gitignore.io
+
+esse comando dentro do git ignore ignora o banco de dados chamado script --> *.#script
