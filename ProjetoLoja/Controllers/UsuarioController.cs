@@ -26,7 +26,7 @@ namespace ProjetoLoja.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Login(string email, string senha)
+        public IActionResult login(string email, string senha)
         {
             var usuario = _usuarioRepositorio.ObterUsuario(email);
             if (usuario != null && usuario.senha != senha)
@@ -34,7 +34,8 @@ namespace ProjetoLoja.Controllers
                 return RedirectToAction ("Index", "Cliente");
             }
             //MODEL STATE ARMAZENA O ERRO E MOSTRA PRO USUARIO
-            ModelState.AddModelError("","Email / senha invalida")
+            ModelState.AddModelError("", "Email / senha invalida");
+            return View();
         }
     }
 }
