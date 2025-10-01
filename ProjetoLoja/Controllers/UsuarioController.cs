@@ -1,12 +1,40 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿//IMPORTANDO PACOTES PARA O PROJETO
+using Microsoft.AspNetCore.Mvc;
+using ProjetoLoja.Repositorio;
 
+//DEFINE O NOME E AONDE A CLASSE ESTA LOCALIZADA, NAMESPACE AJUDA A ORGANIZAR O CODIGO E EVITAR CONFLITOS DE NOMES
 namespace ProjetoLoja.Controllers
 {
+    //CLASSE USUARIO CONTROLLER QUE ESTA HERDANDO DA CLASSE CONTROLLER
     public class UsuarioController : Controller
     {
-        public IActionResult Index()
+        //DECLARA UMA VARIAVEL PRIVADA SOMENTE LEITURA DO TIPO USUARIOREPOSITORIO (INSTANCIAR) CHAMADA:
+        //_usuarioRepositorio (UMA CLASSE RESPONSAVEL POR INTERAGIR COM A CAMADA DE DADOS E GERENCIAR AS INFORMAÇÕES DO USUARIO
+        private readonly UsuarioRepositorio _usuarioRepositorio;
+
+        //INJEÇÃO DE DEPENDENCIA =
+        //CONSTRUTOR E RECEBE A INSTACNCIA USUARIOREPO COM PARAMETROS
+        public UsuarioController (UsuarioRepositorio usuarioRepositorio)
         {
+            _usuarioRepositorio = usuarioRepositorio;
+        }
+        //INTERFACE É UMA APRESENTAÇÃO DO RESULTADO (TELA)
+        //APRENDER AS REQUISIÇÕES  HTTP (POST, GET, PUT, DELETE)
+        public IActionResult Login()
+        {
+            //RETORNA A PAGINA INDEX
             return View();
+        }
+        [HttpPost]
+        public IActionResult Login(string email, string senha)
+        {
+            var usuario = _usuarioRepositorio.ObterUsuario(email);
+            if (usuario != null && usuario.senha != senha)
+            {
+                return RedirectToAction ("Index", "Cliente");
+            }
+            //MODEL STATE ARMAZENA O ERRO E MOSTRA PRO USUARIO
+            ModelState.AddModelError("","Email / senha invalida")
         }
     }
 }
