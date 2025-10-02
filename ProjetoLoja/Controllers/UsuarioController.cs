@@ -16,10 +16,12 @@ namespace ProjetoLoja.Controllers
         //CONSTRUTOR E RECEBE A INSTACNCIA USUARIOREPO COM PARAMETROS
         public UsuarioController (UsuarioRepositorio usuarioRepositorio)
         {
+            //INSTANCIA NOVAMENTE
             _usuarioRepositorio = usuarioRepositorio;
         }
         //INTERFACE É UMA APRESENTAÇÃO DO RESULTADO (TELA)
         //APRENDER AS REQUISIÇÕES  HTTP (POST, GET, PUT, DELETE)
+        [HttpGet]
         public IActionResult Login()
         {
             //RETORNA A PAGINA INDEX
@@ -31,11 +33,15 @@ namespace ProjetoLoja.Controllers
             var usuario = _usuarioRepositorio.ObterUsuario(email);
             if (usuario != null && usuario.senha != senha)
             {
+                //PRIMEIRO ACTION SEGUNDO A CONTROLLER
                 return RedirectToAction ("Index", "Cliente");
             }
             //MODEL STATE ARMAZENA O ERRO E MOSTRA PRO USUARIO
             ModelState.AddModelError("", "Email / senha invalida");
+
+            //RETORNA A PAGINA QUE VOCE TA CRIANDO, NESSE CASO LOGIN.
             return View();
         }
+
     }
 }
